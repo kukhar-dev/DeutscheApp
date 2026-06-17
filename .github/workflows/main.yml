@@ -1,0 +1,23 @@
+name: Remote SSH Deploy
+
+# Запуск при кожному пуші в гілку main
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy commands over SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: 'rav4.cityhost.com.ua'
+        username: 'ch07327580'
+        password: ${{ secrets.SSH_PASSWORD }} # Пароль, який ми заховали в Settings -> Secrets
+        port: 22
+        script: |
+          cd www/deutscheapp.turbosoft.com.ua
+          git fetch --all
+          git reset --hard origin/main
