@@ -10,6 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # ОЦЕЙ НОВИЙ КРОК ДІЗНАЄТЬСЯ IP-АДРЕСУ:
+    - name: Get Github Runner IP
+      run: curl icanhazip.com
+
+    - name: Deploy commands over SSH
+      uses: appleboy/ssh-action@master
+
+
+
+      
     - name: Deploy commands over SSH
       uses: appleboy/ssh-action@master
       with:
