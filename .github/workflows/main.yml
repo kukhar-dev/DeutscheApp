@@ -10,22 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # ОЦЕЙ НОВИЙ КРОК ДІЗНАЄТЬСЯ IP-АДРЕСУ:
+    # 1. Дізнаємось IP-адресу ранера GitHub
     - name: Get Github Runner IP
       run: curl icanhazip.com
 
-    - name: Deploy commands over SSH
-      uses: appleboy/ssh-action@master
-
-
-
-      
+    # 2. Підключаємось до сервера Cityhost
     - name: Deploy commands over SSH
       uses: appleboy/ssh-action@master
       with:
         host: 'rav4.cityhost.com.ua'
         username: 'ch07327580'
-        password: ${{ secrets.SSH_PASSWORD }} # Пароль, який ми заховали в Settings -> Secrets
+        password: ${{ secrets.SSH_PASSWORD }}
         port: 22
         script: |
           cd www/deutscheapp.turbosoft.com.ua
